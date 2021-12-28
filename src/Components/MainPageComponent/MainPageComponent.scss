@@ -1,0 +1,53 @@
+.main-page-container {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+
+  .map-container {
+    display: flex;
+    width: 50%;
+    height: 400px;
+    width: 400px;
+
+    .mapboxgl-control-container {
+      display: none;
+    }
+  }
+
+  .page-weather-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 29px;
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      width: 66%;
+      align-items: center;
+
+      .card-body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 50%;
+
+        .weather-icon {
+          width: 45%;
+        }
+      }
+
+      .main-info-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  }
+}

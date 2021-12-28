@@ -1,0 +1,45 @@
+.form-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .login-form-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+
+    .display-error-alert {
+      visibility: visible;
+      color: red;
+    }
+
+    .hidden-error-alert {
+      visibility: hidden;
+    }
+
+    input {
+      width: 20%;
+      height: 30px;
+      margin-bottom: 2%;
+    }
+
+    .border-err {
+      border: 3px solid red;
+    }
+
+    .link-style {
+      width: 10%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      button {
+        width: 100%;
+        height: 30px;
+        margin-right: 10%;
+      }
+    }
+  }
+}
