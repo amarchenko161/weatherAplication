@@ -1,8 +1,9 @@
-import React from 'react';
-import firebaseInstans from '../../firebaseConfig';
-import { useHistory } from 'react-router-dom';
-import './ProfileComponent.scss';
-import MyComponent from '../MainPageComponent/MainPageComponent';
+import React from "react";
+import firebaseInstans from "../../firebaseConfig";
+import { useHistory } from "react-router-dom";
+import "./ProfileComponent.scss";
+import MyComponent from "../MainPageComponent/MainPageComponent";
+import CurrentCityWeatherComponent from "../CurrentCityWeatherComponent/CurrentCityWeatherComponent";
 
 const ProfileComponent = () => {
   const user = firebaseInstans.auth.currentUser;
@@ -11,23 +12,25 @@ const ProfileComponent = () => {
     firebaseInstans.auth
       .signOut()
       .then((res) => {
-        localStorage.removeItem('token');
+        localStorage.removeItem("token");
       })
       .catch((error) => {
         // some err
       });
-    history.push('/');
+    history.push("/");
   };
 
   return (
-    // <div className='display-hello-user'>
-    //   dsadas
+    // <div className="display-hello-user">
     //   <div>
-    //     {/* Hello <span className='current-name'>{user.email} </span>{' '} */}
+    //     Hello <span className="current-name">{user.email} </span>{" "}
     //   </div>
     //   <button onClick={() => logOut()}>Log Out</button>
-    <MyComponent />
-    // </div>
+    //   </div>
+    <div>
+      <MyComponent />
+      <CurrentCityWeatherComponent />
+    </div>
   );
 };
 

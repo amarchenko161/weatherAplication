@@ -1,9 +1,8 @@
-import React, { useRef, useEffect, useState } from 'react';
-import './MainPageComponent.scss';
-import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
+import React, { useRef, useEffect, useState } from "react";
+import "./MainPageComponent.scss";
+import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 
-mapboxgl.accessToken =
-  'pk.eyJ1IjoicmVzdGFydGFxd2VyIiwiYSI6ImNreG9ob3l5djQ2eWkycHBncGMyNDBwaGgifQ.0tSoKmSfKQoAjgAtpFQNDQ';
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 const MyComponent = () => {
   //state for map
@@ -14,10 +13,10 @@ const MyComponent = () => {
   const [zoom, setZoom] = useState(11);
   // state for weather
   const [apiData, setApiData] = useState({});
-
   // key for weather
-  const apiKey = 'c80c5631988234bf3332f153fdaff827';
-  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${apiKey}`;
+  const apiKey = process.env.REACT_APP_API_KEY;
+  const apiUrl =
+    process.env.REACT_APP_API_URL + `${apiKey}&lat=${lat}&lon=${lng}`;
 
   //FOR WEATHER
   useEffect(() => {
@@ -31,7 +30,7 @@ const MyComponent = () => {
     if (map.current) return; // initialize map only once
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/streets-v11',
+      style: "mapbox://styles/mapbox/streets-v11",
       center: [lng, lat],
       zoom: zoom,
     });
@@ -46,25 +45,24 @@ const MyComponent = () => {
   );
 
   //FUNC FOR WEATHER
-
   const kelvinToFarenheit = (k) => {
     return (k - 273.15).toFixed(2);
   };
 
   return (
-    <div className='main-page-container'>
-      <div ref={mapContainer} className='map-container' />
-      <div className='page-weather-container'>
+    <div className="main-page-container">
+      <div ref={mapContainer} className="map-container" />
+      <div className="page-weather-container">
         {apiData.name}
-        <div className='container'>
+        <div className="container">
           {apiData.main ? (
-            <div className='card-body'>
+            <div className="card-body">
               <img
                 src={`http://openweathermap.org/img/w/${apiData.weather[0].icon}.png`}
-                alt='weather status icon'
-                className='weather-icon'
+                alt="weather status icon"
+                className="weather-icon"
               />
-              <div className='main-info-card'>
+              <div className="main-info-card">
                 {kelvinToFarenheit(apiData.main.temp)}&deg; C
                 <strong>
                   Min:
