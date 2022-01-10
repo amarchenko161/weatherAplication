@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  width: 100%;
+  background: #0084e3;
+  height: 55px;
+  justify-content: flex-end;
+  align-items: center;
+
+  .username {
+    font-size: 1.5rem;
+    padding-right: 1%;
+    text-align: end;
+  }
+
+  .icon-size {
+    font-size: 3rem;
+    color: black;
+  }
+}

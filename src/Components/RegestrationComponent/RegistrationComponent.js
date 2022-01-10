@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';   
 import classNames from 'classnames';
 import firebaseInstans from '../../firebaseConfig';
 import { createUserWithEmailAndPassword } from 'firebase/auth';

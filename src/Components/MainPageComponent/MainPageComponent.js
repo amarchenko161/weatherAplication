@@ -1,10 +1,9 @@
 import React, { useRef, useEffect, useState } from "react";
-import "./MainPageComponent.scss";
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
-
+import "./MainPageComponent.scss";
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
-const MyComponent = () => {
+const MainPageComponent = () => {
   //state for map
   const mapContainer = useRef(null);
   const map = useRef(null);
@@ -84,4 +83,4 @@ const MyComponent = () => {
   );
 };
 
-export default MyComponent;
+export default MainPageComponent;
