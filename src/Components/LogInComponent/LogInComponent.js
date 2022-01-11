@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import classNames from "classnames";
 import firebaseInstans from "../../firebaseConfig";
@@ -7,6 +7,7 @@ import "./LogInComponent.scss";
 import { AuthContext } from "../../context/AuthContext";
 
 const LogInComponent = () => {
+  const { currentUser, setUser } = useContext(AuthContext);
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
@@ -60,6 +61,8 @@ const LogInComponent = () => {
       signInWithEmailAndPassword(firebaseInstans.auth, login, password)
         .then((user) => {
           localStorage.setItem("token", user.user.refreshToken);
+          const userNew = firebaseInstans.auth.currentUser;
+          setUser(userNew);
           history.push("/profile");
         })
         .catch((error) => {
@@ -68,39 +71,35 @@ const LogInComponent = () => {
     }
   };
 
-  const user = firebaseInstans.auth.currentUser;
-
   return (
-    <AuthContext.Provider value={user}>
-      <div className="form-container">
-        <div className="login-form-content">
-          <label>Email:</label>
-          <span className={textErrorEmail}>Email don't correct</span>
-          <input
-            type="text"
-            name="name"
-            className={inpEmail}
-            value={login}
-            placeholder="Email"
-            onChange={(e) => setLogin(e.target.value.trim())}
-          />
-          <label>Password:</label>
-          <span className={textErrorPassword}>Password don't correct</span>
-          <input
-            type="password"
-            value={password}
-            className={inpPassword}
-            name="name"
-            placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <div className="link-style">
-            <button onClick={() => checkValidate()}>Enter</button>
-            <Link to="/singup">Registration</Link> 
-          </div>
+    <div className="form-container">
+      <div className="login-form-content">
+        <label>Email:</label>
+        <span className={textErrorEmail}>Email don't correct</span>
+        <input
+          type="text"
+          name="name"
+          className={inpEmail}
+          value={login}
+          placeholder="Email"
+          onChange={(e) => setLogin(e.target.value.trim())}
+        />
+        <label>Password:</label>
+        <span className={textErrorPassword}>Password don't correct</span>
+        <input
+          type="password"
+          value={password}
+          className={inpPassword}
+          name="name"
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <div className="link-style">
+          <button onClick={() => checkValidate()}>Enter</button>
+          <Link to="/singup">Registration</Link> 
         </div>
       </div>
-    </AuthContext.Provider>
+    </div>
   );
 };
 

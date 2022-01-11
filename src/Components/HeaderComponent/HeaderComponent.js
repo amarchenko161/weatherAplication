@@ -9,8 +9,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { AuthContext } from "../../context/AuthContext";
 
 const HeaderComponent = () => {
-  //const { user } = useContext(AuthContext);
-  const user = firebaseInstans.auth.currentUser;
+  const { currentUser } = useContext(AuthContext);
   const history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -35,7 +34,7 @@ const HeaderComponent = () => {
 
   return (
     <div className="header">
-      <div className="username">{user ? user.email : <></>}</div>
+      <div className="username">{currentUser ? currentUser : ""}</div>
       <div>
         <Button
           id="basic-button"

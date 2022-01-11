@@ -1,7 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import firebaseInstans from "../firebaseConfig";
 
-const AuthContext = React.createContext();
+export const AuthContext = React.createContext();
 
-const useAuthContext = () => React.useContext(AuthContext);
+export const AuthProvider = ({ children }) => {
+  const [currentUser, setCurrentUser] = useState(null);
+  const { auth, onAuthStateChanged } = firebaseInstans;
 
-export { AuthContext, useAuthContext };
+  const setUser = (user) => {
+    setCurrentUser(user.email);
+  };
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      setCurrentUser(user.email);
+    } else {
+      console.log("---------->onAuthStateChanged error");
+    }
+  });
+
+  return (
+    <AuthContext.Provider
+      value={{
+        currentUser,
+        setUser,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+};

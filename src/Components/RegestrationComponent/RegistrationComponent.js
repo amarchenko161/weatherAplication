@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';   
-import classNames from 'classnames';
-import firebaseInstans from '../../firebaseConfig';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import React, { useState, useContext } from "react";
+import { Link, useHistory } from "react-router-dom";
+import classNames from "classnames";
+import firebaseInstans from "../../firebaseConfig";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { AuthContext } from "../../context/AuthContext";
 
 const RegistrationComponent = () => {
-  const [login, setLogin] = useState('');
-  const [password, setPassword] = useState('');
-  const [repeatPassword, setRepeatPassword] = useState('');
+  const { currentUser, setUser } = useContext(AuthContext);
+  const [login, setLogin] = useState("");
+  const [password, setPassword] = useState("");
+  const [repeatPassword, setRepeatPassword] = useState("");
   const history = useHistory();
   const [errInput, setErrInput] = useState({
     checkErrorForLogin: false,
@@ -22,33 +24,33 @@ const RegistrationComponent = () => {
   } = errInput;
 
   const inpEmail = classNames({
-    'border-err': checkErrorForLogin === true,
-    'border-none': checkErrorForLogin === false,
+    "border-err": checkErrorForLogin === true,
+    "border-none": checkErrorForLogin === false,
   });
 
   const inpPassword = classNames({
-    'border-err': checkErrorForPassword === true,
-    'border-none': checkErrorForPassword === false,
+    "border-err": checkErrorForPassword === true,
+    "border-none": checkErrorForPassword === false,
   });
 
   const inpRepPassword = classNames({
-    'border-err': checkErrorForRepeatPassword === true,
-    'border-none': checkErrorForRepeatPassword === false,
+    "border-err": checkErrorForRepeatPassword === true,
+    "border-none": checkErrorForRepeatPassword === false,
   });
 
   const textErrorEmail = classNames({
-    'display-error-alert': checkErrorForLogin === true,
-    'hidden-error-alert': checkErrorForLogin === false,
+    "display-error-alert": checkErrorForLogin === true,
+    "hidden-error-alert": checkErrorForLogin === false,
   });
 
   const textErrorPassword = classNames({
-    'display-error-alert': checkErrorForPassword === true,
-    'hidden-error-alert': checkErrorForPassword === false,
+    "display-error-alert": checkErrorForPassword === true,
+    "hidden-error-alert": checkErrorForPassword === false,
   });
 
   const textErrorRepeatPassword = classNames({
-    'display-error-alert': checkErrorForRepeatPassword === true,
-    'hidden-error-alert': checkErrorForRepeatPassword === false,
+    "display-error-alert": checkErrorForRepeatPassword === true,
+    "hidden-error-alert": checkErrorForRepeatPassword === false,
   });
 
   const checkValidate = () => {
@@ -76,8 +78,10 @@ const RegistrationComponent = () => {
     if (!atLeastOneError) {
       createUserWithEmailAndPassword(firebaseInstans.auth, login, password)
         .then((user) => {
-          localStorage.setItem('token', user.user.refreshToken);
-          history.push('/profile');
+          localStorage.setItem("token", user.user.refreshToken);
+          const userNew = firebaseInstans.auth.currentUser;
+          setUser(userNew);
+          history.push("/profile");
         })
         .catch((error) => {
           // some err
@@ -87,25 +91,25 @@ const RegistrationComponent = () => {
 
   return (
     <div>
-      <div className='form-container'>
-        <div className='login-form-content'>
+      <div className="form-container">
+        <div className="login-form-content">
           <label>Email:</label>
           <span className={textErrorEmail}>Email don't correct</span>
           <input
-            type='text'
-            name='name'
+            type="text"
+            name="name"
             value={login}
-            placeholder='Email'
+            placeholder="Email"
             className={inpEmail}
             onChange={(e) => setLogin(e.target.value.trim())}
           />
           <label>Password:</label>
           <span className={textErrorPassword}>Password don't correct</span>
           <input
-            type='password'
+            type="password"
             value={password}
-            name='name'
-            placeholder='Password'
+            name="name"
+            placeholder="Password"
             className={inpPassword}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -114,16 +118,16 @@ const RegistrationComponent = () => {
             Password's don't match
           </span>
           <input
-            type='password'
+            type="password"
             value={repeatPassword}
-            name='name'
+            name="name"
             className={inpRepPassword}
-            placeholder='Repeat password'
+            placeholder="Repeat password"
             onChange={(e) => setRepeatPassword(e.target.value)}
           />
-          <div className='link-style'>
+          <div className="link-style">
             <button onClick={() => checkValidate()}>Enter</button>
-            <Link to='/singin'>LogIn</Link>
+            <Link to="/singin">LogIn</Link>
           </div>
         </div>
       </div>
