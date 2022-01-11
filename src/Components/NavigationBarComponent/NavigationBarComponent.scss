@@ -1,0 +1,19 @@
+.active-link {
+  display: flex;
+  flex-direction: row;
+  font-size: 15px;
+
+  a {
+    text-decoration: none;
+    color: black;
+    margin-right: 15px;
+  }
+
+  .link-check {
+    border-bottom: 3px solid black;
+  }
+
+  .link-uncheck {
+    border-bottom: none;
+  }
+}

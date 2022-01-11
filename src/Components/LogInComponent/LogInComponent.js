@@ -3,8 +3,8 @@ import { Link, useHistory } from "react-router-dom";
 import classNames from "classnames";
 import firebaseInstans from "../../firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import "./LogInComponent.scss";
 import { AuthContext } from "../../context/AuthContext";
+import "./LogInComponent.scss";
 
 const LogInComponent = () => {
   const { currentUser, setUser } = useContext(AuthContext);
@@ -63,7 +63,7 @@ const LogInComponent = () => {
           localStorage.setItem("token", user.user.refreshToken);
           const userNew = firebaseInstans.auth.currentUser;
           setUser(userNew);
-          history.push("/profile");
+          history.push("/overview");
         })
         .catch((error) => {
           // Handle error.

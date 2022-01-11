@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
-import MenuIcon from "@mui/icons-material/Menu";
 import firebaseInstans from "../../firebaseConfig";
-import "./HeaderComponent.scss";
-import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
+import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
+import MenuIcon from "@mui/icons-material/Menu";
 import { AuthContext } from "../../context/AuthContext";
+import "./HeaderComponent.scss";
 
 const HeaderComponent = () => {
   const { currentUser } = useContext(AuthContext);

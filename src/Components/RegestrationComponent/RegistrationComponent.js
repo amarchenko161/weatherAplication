@@ -81,7 +81,7 @@ const RegistrationComponent = () => {
           localStorage.setItem("token", user.user.refreshToken);
           const userNew = firebaseInstans.auth.currentUser;
           setUser(userNew);
-          history.push("/profile");
+          history.push("/overview");
         })
         .catch((error) => {
           // some err

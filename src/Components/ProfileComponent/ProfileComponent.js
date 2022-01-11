@@ -1,17 +1,15 @@
-import React from "react";
-import "./ProfileComponent.scss";
-import MainPageComponent from "../MainPageComponent/MainPageComponent";
-import CurrentCityWeatherComponent from "../CurrentCityWeatherComponent/CurrentCityWeatherComponent";
-import HeaderComponent from "../HeaderComponent/HeaderComponent";
+// import React from "react";
+// import "./ProfileComponent.scss";
+// import MainPageComponent from "../MainPageComponent/MainPageComponent";
+// import CurrentCityWeatherComponent from "../CurrentCityWeatherComponent/CurrentCityWeatherComponent";
 
-const ProfileComponent = () => {
-  return (
-    <div>
-      <HeaderComponent />
-      <MainPageComponent />
-      <CurrentCityWeatherComponent />
-    </div>
-  );
-};
+// const ProfileComponent = () => {
+//   return (
+//     <div>
+//       <MainPageComponent />
+//       <CurrentCityWeatherComponent />
+//     </div>
+//   );
+// };
 
-export default ProfileComponent;
+// export default ProfileComponent;
