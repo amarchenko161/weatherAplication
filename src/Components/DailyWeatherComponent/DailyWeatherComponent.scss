@@ -1,0 +1,13 @@
+.daily-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+
+  .current-day {
+    width: 10%;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

@@ -8,6 +8,7 @@ import RegistrationComponent from "./Components/RegestrationComponent/Registrati
 import { AuthProvider } from "./context/AuthContext";
 import MainPageComponent from "./Components/MainPageComponent/MainPageComponent";
 import CurrentCityWeatherComponent from "./Components/CurrentCityWeatherComponent/CurrentCityWeatherComponent";
+import DailyWeatherComponent from "./Components/DailyWeatherComponent/DailyWeatherComponent";
 
 const App = () => {
   return (
@@ -42,6 +43,7 @@ const App = () => {
                 <HeaderComponent />
                 <NavigationBarComponent />
                 <MainPageComponent />
+                <DailyWeatherComponent />
               </>
             ) : (
               <Redirect to="/" />
