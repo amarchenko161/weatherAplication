@@ -1,14 +1,14 @@
 import React from "react";
+import { AuthProvider } from "./context/AuthContext";
 import { Switch, Route, Redirect } from "react-router-dom";
-import "./App.css";
 import HeaderComponent from "./Components/HeaderComponent/HeaderComponent";
 import NavigationBarComponent from "./Components/NavigationBarComponent/NavigationBarComponent";
 import LogInComponent from "./Components/LogInComponent/LogInComponent";
 import RegistrationComponent from "./Components/RegestrationComponent/RegistrationComponent";
-import { AuthProvider } from "./context/AuthContext";
 import MainPageComponent from "./Components/MainPageComponent/MainPageComponent";
 import CurrentCityWeatherComponent from "./Components/CurrentCityWeatherComponent/CurrentCityWeatherComponent";
-import DailyWeatherComponent from "./Components/DailyWeatherComponent/DailyWeatherComponent";
+import CurrentDayWeatherComponent from "./Components/CurrentDayWeatherComponent/CurrentDayWeatherComponent";
+import "./App.css";
 
 const App = () => {
   return (
@@ -43,7 +43,7 @@ const App = () => {
                 <HeaderComponent />
                 <NavigationBarComponent />
                 <MainPageComponent />
-                <DailyWeatherComponent />
+                <CurrentDayWeatherComponent />
               </>
             ) : (
               <Redirect to="/" />

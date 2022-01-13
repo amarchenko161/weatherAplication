@@ -8,8 +8,11 @@ const MainPageComponent = () => {
   //state for map
   const mapContainer = useRef(null);
   const map = useRef(null);
-  const [lng, setLng] = useState(38.89688);
-  const [lat, setLat] = useState(47.23617);
+  const [coordinates, setCoordinates] = useState({
+    lng: 38.89688,
+    lat: 47.23617,
+  });
+  const { lng, lat } = coordinates;
   const [zoom, setZoom] = useState(11);
   // state for weather
   const [apiData, setApiData] = useState({});
@@ -39,8 +42,11 @@ const MainPageComponent = () => {
   navigator.geolocation.getCurrentPosition(
     // Функция обратного вызова при успешном извлечении локации
     function (position) {
-      setLat(position.coords.latitude);
-      setLng(position.coords.longitude);
+      setCoordinates({
+        ...coordinates,
+        lng: position.coords.longitude,
+        lat: position.coords.latitude,
+      });
     }
   );
 
